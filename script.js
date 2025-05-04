@@ -116,9 +116,9 @@ const drawBit = (i) => {
         contentState = '0';
     }
 
-    let bitLabel = `<span class="bitLabel">${contentState}</span>`;
+    let bitLabel = `<span class="bitLabel hide">${contentState}</span>`;
     let button = `<button id="bit-${i}" data-bit-index="${i}" class="bit ${clState}">${bitLabel}</button>`;
-    let columnLabel = `<label class="bitColumn" for="bit-${i}">${column}</label>`;
+    let columnLabel = `<label class="bitColumn hide" for="bit-${i}">${column}</label>`;
     return `<div class="bitPanel flexCol">${button}${columnLabel}</div>`;
 }
 
