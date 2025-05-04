@@ -23,14 +23,14 @@
     </div>
     <div class='middlePanel'>
         <div id='controlsPanel' class='flexRow'>
-            <div class='flexCol'>
+            <div class='flexCol flexColCenter'>
                 <label for='optNBits' class='spinnerLabel'># bits</label>
             </div>
             <input id='optNBits' type='number' min='1' max='16' value='8'>
             <button id='btnFillBits' class='control'><i class="fas fa-plane-departure" aria-hidden="true"></i>
                 <div class='controlText'>Fill</div>
             </button>
-            <button id='btnClearBits' class='control'><i class="fas fa-plane-arrival" aria-hidden="true"></i>
+            <button id='btnClearBits' class='control' disabled><i class="fas fa-plane-arrival" aria-hidden="true"></i>
                 <div class='controlText'>Clear</div>
             </button>
             <button id='btnRandomBits' class='control'><i class="fas fa-dice" aria-hidden="true"></i>
@@ -41,47 +41,47 @@
     <div class='middlePanel'>
         <div id='bitsPanel' class='flexRow'>
             <div class='bitPanel flexCol'>
-                <button id='bit-0' class='bit bit-off'><span class='bitLabel'>0</span></button>
-                <div class='bitColumn'>1</div>
+                <button id='bit-7' class='bit bit-off'><span class='bitLabel hide'>0</span></button>
+                <div class='bitColumn hide'>128</div>
             </div>
             <div class='bitPanel flexCol'>
-                <button id='bit-1' class='bit bit-off'><span class='bitLabel'>0</span></button>
-                <div class='bitColumn'>2</div>
+                <button id='bit-6' class='bit bit-off'><span class='bitLabel hide'>0</span></button>
+                <div class='bitColumn hide'>64</div>
             </div>
             <div class='bitPanel flexCol'>
-                <button id='bit-2' class='bit bit-off'><span class='bitLabel'>0</span></button>
-                <div class='bitColumn'>4</div>
+                <button id='bit-5' class='bit bit-off'><span class='bitLabel hide'>0</span></button>
+                <div class='bitColumn hide'>32</div>
             </div>
             <div class='bitPanel flexCol'>
-                <button id='bit-3' class='bit bit-off'><span class='bitLabel'>0</span></button>
-                <div class='bitColumn'>8</div>
+                <button id='bit-4' class='bit bit-off'><span class='bitLabel hide'>0</span></button>
+                <div class='bitColumn hide'>16</div>
             </div>
             <div class='bitPanel flexCol'>
-                <button id='bit-4' class='bit bit-off'><span class='bitLabel'>0</span></button>
-                <div class='bitColumn'>16</div>
+                <button id='bit-3' class='bit bit-off'><span class='bitLabel hide'>0</span></button>
+                <div class='bitColumn hide'>8</div>
             </div>
             <div class='bitPanel flexCol'>
-                <button id='bit-5' class='bit bit-off'><span class='bitLabel'>0</span></button>
-                <div class='bitColumn'>32</div>
+                <button id='bit-2' class='bit bit-off'><span class='bitLabel hide'>0</span></button>
+                <div class='bitColumn hide'>4</div>
             </div>
             <div class='bitPanel flexCol'>
-                <button id='bit-6' class='bit bit-off'><span class='bitLabel'>0</span></button>
-                <div class='bitColumn'>64</div>
+                <button id='bit-1' class='bit bit-off'><span class='bitLabel hide'>0</span></button>
+                <div class='bitColumn hide'>2</div>
             </div>
             <div class='bitPanel flexCol'>
-                <button id='bit-7' class='bit bit-off'><span class='bitLabel'>0</span></button>
-                <div class='bitColumn'>128</div>
+                <button id='bit-0' class='bit bit-off'><span class='bitLabel hide'>0</span></button>
+                <div class='bitColumn hide'>1</div>
             </div>
         </div>
     </div>
     <div class='middlePanel'>
         <div id="resultsPanel" class="flexCol">
             <div id='binaryPanel' class='flexRow hide'>
-                <div class='flexCol'>
+                <div class='flexCol flexColCenter'>
                     <label for='binaryResult' class='resultLabel'>binary</label>
                 </div>
                 <input id='binaryResult' value='0' maxlength='8' class='result'></input>
-                <div class='copyPanel flexCol'>
+                <div class='copyPanel flexCol flexColCenter'>
                     <button id='copyBinary' class='copyButton'>
                         <i class="far fa-copy" aria-hidden="true"></i>
                     </button>
@@ -89,11 +89,11 @@
 
             </div>
             <div id='decimalPanel' class='flexRow hide'>
-                <div class='flexCol'>
+                <div class='flexCol flexColCenter'>
                     <label for='decimalResult' class='resultLabel'>decimal</label>
                 </div>
                 <input id='decimalResult' value='0' type='number' max='255' min='0' class='result'></input>
-                <div class='copyPanel flexCol'>
+                <div class='copyPanel flexCol flexColCenter'>
                     <button id='copyDecimal' class='copyButton'>
                         <i class="far fa-copy" aria-hidden="true"></i>
                     </button>
@@ -101,11 +101,11 @@
             </div>
             <div id='hexPanel' class='flexRow hide'>
 
-                <div class='flexCol'>
+                <div class='flexCol flexColCenter'>
                     <label for='hexResult' class='resultLabel'>hex</label>
                 </div>
                 <input id='hexResult' value='0' maxlength='2' class='result'></input>
-                <div class='copyPanel flexCol'>
+                <div class='copyPanel flexCol flexColCenter'>
                     <button id='copyHex' class='copyButton'>
                         <i class="far fa-copy" aria-hidden="true"></i>
                     </button>
@@ -113,11 +113,11 @@
             </div>
             <div id='asciiPanel' class='flexRow hide'>
 
-                <div class='flexCol'>
+                <div class='flexCol flexColCenter'>
                     <label for='asciiResult' class='resultLabel'>ASCII</label>
                 </div>
                 <input id='asciiResult' value='' maxlength='1' class='result'></input>
-                <div class='copyPanel flexCol'>
+                <div class='copyPanel flexCol flexColCenter'>
                     <button id='copyAscii' class='copyButton'>
                         <i class="far fa-copy" aria-hidden="true"></i>
                     </button>
@@ -151,20 +151,20 @@
                                                                                                  aria-hidden="true"></i>
                 <div class='controlText'>Show all</div>
             </button>
-            <button id='btnHideAll' class='control  controlWide controlSecondary'><i
+            <button id='btnHideAll' class='control  controlWide controlSecondary' disabled><i
                     class="fas fa-eye-slash" aria-hidden="true"></i>
                 <div class='controlText'>Hide all</div>
             </button>
         </div>
         <div class="optionsPanel flexRow" id="optionsPanel3">
-            <label for="optPadBinary" class="optionCheckboxLabel"><input type='checkbox' id="optPadBinary"
+            <label for="optPadBinary" class="optionCheckboxLabel" title="May make it difficult to manually enter binary values"><input type='checkbox' id="optPadBinary"
                                                                          class="optionCheckboxInput"><span
                     class="optionCheckboxLabelText">Pad binary to # bits</span></label>
-            <button id='btnReset' class='control'><i class="fas fa-trash" aria-hidden="true"></i>
+            <button id='btnReset' class='control' disabled><i class="fas fa-trash" aria-hidden="true" ></i>
                 <div class='controlText'>Reset</div>
             </button>
         </div>
-        <div id='creditsPanel' class='flexCol'>
+        <div id='creditsPanel' class='flexCol flexColCenter'>
             <div id='credits'>© <span id="copyrightYear">2025</span> <a href="https://sawczak.com"
                                                                         title="Visit Luke Sawczak's website">Luke
                 Sawczak</a></div>

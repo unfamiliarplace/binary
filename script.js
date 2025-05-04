@@ -57,7 +57,7 @@ const setRandomBits = () => {
 const handleBinaryUpdate = (e) => {
     let bin = e.target.value.trim();
     if (bin.length === 0) {
-        return;
+        bin = 0;
     }
 
     let dec = parseInt(bin, 2);
@@ -260,8 +260,8 @@ const toggleShowHideButtons = () => {
         app.optShowAscii.value(),
     ];
 
-    toggleButton($('#btnShowAll'), ! values.some(Boolean));
-    toggleButton($('#btnHideAll'), values.every(Boolean));
+    toggleButton($('#btnShowAll'), ! values.every(Boolean));
+    toggleButton($('#btnHideAll'), values.some(Boolean));
 }
 
 const toggleFillClearButtons = () => {
@@ -382,7 +382,7 @@ const optDefaultShowBinary = false;
 const optDefaultShowDecimal = false;
 const optDefaultShowHex = false;
 const optDefaultShowAscii = false;
-const optDefaultPadBinary = true;
+const optDefaultPadBinary = false;
 
 
 class App {
