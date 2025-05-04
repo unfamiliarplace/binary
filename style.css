@@ -21,7 +21,7 @@ body {
 .flexCol {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
 }
 
 .flexRow {
@@ -36,6 +36,32 @@ body {
   height: 30px;
   font-size: 16px;
   min-width: 110px;
+  background: transparent;
+  color: white;
+  border: 1px solid #fff;
+  border-radius: 5px;
+}
+
+.control:disabled {
+  background: rgba(180, 180, 180, 0.75);
+  color: rgba(60, 60, 60, 1);
+  border: rgba(60, 60, 60, 1);
+}
+
+.control:hover:disabled {
+  cursor: not-allowed;
+}
+
+.control:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.control:active:not(:disabled) {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.control:hover:not(:disabled), .control:active:not(:disabled) {
+  cursor: pointer;
 }
 
 .controlWide {
@@ -56,6 +82,7 @@ body {
 }
 
 #bitsPanel {
+  height: 150px;
   flex-direction: row-reverse;
 }
 
@@ -65,7 +92,8 @@ body {
   width: 72px;
   color: white;
   font-size: 35px;
-  border-radius: 5px;
+  border-radius: 10px;
+  border: 1px solid #fff;
 }
 
 .bitLabel, .controlText, .control i {
@@ -76,12 +104,25 @@ body {
   background: #333;
 }
 
-.bit-off:hover {
-  background: #555;
-}
-
 .bit-on {
   background: #227733;
+}
+
+/*.bit-off:hover {*/
+/*  background: #555;*/
+/*}*/
+
+.bitColumn:hover, .bitColumn:active {
+  cursor: pointer;
+}
+
+.bit:hover {
+  filter: brightness(1.35);
+  cursor: pointer;
+}
+
+.bit:active {
+  filter: brightness(1);
 }
 
 .result {
@@ -91,8 +132,8 @@ body {
   text-align: center;
   width: 280px;
   background: #031244;
-  padding: 5px 20px;
-  height: 28px;
+  padding: 10px 20px;
+  height: 32px;
 }
 
 #titlePanel {
@@ -113,7 +154,7 @@ body {
 }
 
 .hide {
-  display: none;
+  /*display: none;*/
   visibility: hidden;
 }
 

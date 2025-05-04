@@ -250,6 +250,11 @@ const toggleShowHideButtons = () => {
     $('#btnHideAll').prop('disabled', ! values.some(Boolean));
 }
 
+const toggleFillClearButtons = () => {
+    $('#btnFillBits').prop('disabled', app.bitStates.every(Boolean));
+    $('#btnClearBits').prop('disabled', ! app.bitStates.some(Boolean));
+}
+
 const bindControls = () => {
     $('#optNBits').change(handleNBitsUpdate).keyup(handleNBitsUpdate).mouseup(handleNBitsUpdate);
 
@@ -321,6 +326,7 @@ const setDynamicOptionDefaults = () => {
 const updateBits = () => {
     drawBits();
     updateResults();
+    toggleFillClearButtons();
 }
 
 const initialize = () => {
