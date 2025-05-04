@@ -23,19 +23,19 @@
   <div class='middlePanel'>
     <div id='controlPanel' class='flexRow'>
       <div class='flexCol'>
-        <label for='nBits'># bits</label>
+        <label for='optNBits'># bits</label>
       </div>
-      <input id='nBits' type='number' min='1' max='16' value='8'></input>
-      <button id='fillAll' class='control'><i class="fas fa-plane-departure" aria-hidden="true"></i>
+      <input id='optNBits' type='number' min='1' max='16' value='8'></input>
+      <button id='btnFillBits' class='control'><i class="fas fa-plane-departure" aria-hidden="true"></i>
         <div class='controlText'>Fill</div>
       </button>
-      <button id='clearAll' class='control'><i class="fas fa-plane-arrival" aria-hidden="true"></i>
+      <button id='btnClearBits' class='control'><i class="fas fa-plane-arrival" aria-hidden="true"></i>
         <div class='controlText'>Clear</div>
       </button>
-      <button id='random' class='control'><i class="fas fa-dice" aria-hidden="true"></i>
+      <button id='btnRandomBits' class='control'><i class="fas fa-dice" aria-hidden="true"></i>
         <div class='controlText'>Random</div>
       </button>
-      <button id='reset' class='control'><i class="fas fa-trash" aria-hidden="true"></i>
+      <button id='btnReset' class='control'><i class="fas fa-trash" aria-hidden="true"></i>
         <div class='controlText'>Reset</div>
       </button>
     </div></div>
@@ -125,43 +125,31 @@
   </div>
   <div id='bottomPanel'>
     <div class='optionsPanel flexRow' id='optionsPanel1'>
-      <button id='hideLabels' class='control controlSmall controlWide controlSecondary'><i class="fas fa-eye-slash" aria-hidden="true"></i>
-        <div class='controlText'>Hide 1/0</div>
-      </button>
-      <button id='hideColumns' class='control controlSmall controlWide controlSecondary'><i class="fas fa-eye-slash" aria-hidden="true"></i>
-        <div class='controlText'>Hide columns</div>
-      </button>
-      <button id='hideBinary' class='control controlSmall controlWide controlSecondary'><i class="fas fa-eye-slash" aria-hidden="true"></i>
-        <div class='controlText'>Hide binary</div>
-      </button>
-      <button id='hideDecimal' class='control controlSmall controlWide controlSecondary'><i class="fas fa-eye-slash" aria-hidden="true"></i>
-        <div class='controlText'>Hide decimal</div>
-      </button>
-      <button id='hideHex' class='control controlSmall controlWide controlSecondary'><i class="fas fa-eye-slash" aria-hidden="true"></i>
-        <div class='controlText'>Hide hex</div>
-      </button>
-      <button id='hideAscii' class='control controlSmall controlWide controlSecondary'><i class="fas fa-eye-slash" aria-hidden="true"></i>
-        <div class='controlText'>Hide ASCII</div>
-      </button>
+      <label for="optShow10" class="optionCheckboxLabel"><input type='checkbox' id="optShow10" class="optionCheckboxInput"><span class="optionCheckboxLabelText">1/0</span></label>
+      <label for="optShowColumns" class="optionCheckboxLabel"><input type='checkbox' id="optShowColumns" class="optionCheckboxInput"><span class="optionCheckboxLabelText">Columns</span></label>
+      <label for="optShowBinary" class="optionCheckboxLabel"><input type='checkbox' id="optShowBinary" class="optionCheckboxInput"><span class="optionCheckboxLabelText">Binary</span></label>
+      <label for="optShowDecimal" class="optionCheckboxLabel"><input type='checkbox' id="optShowDecimal" class="optionCheckboxInput"><span class="optionCheckboxLabelText">Decimal</span></label>
+      <label for="optShowHex" class="optionCheckboxLabel"><input type='checkbox' id="optShowHex" class="optionCheckboxInput"><span class="optionCheckboxLabelText">Hex</span></label>
+      <label for="optShowAscii" class="optionCheckboxLabel"><input type='checkbox' id="optShowAscii" class="optionCheckboxInput"><span class="optionCheckboxLabelText">ASCII</span></label>
     </div>
     <div class='optionsPanel flexRow' id='optionsPanel2'>
-            <button id='showAll' class='control controlSmall controlWide controlSecondary'><i class="fas fa-eye" aria-hidden="true"></i>
+            <button id='btnShowAll' class='control controlSmall controlWide controlSecondary'><i class="fas fa-eye" aria-hidden="true"></i>
         <div class='controlText'>Show all</div>
       </button>
-            <button id='hideAll' class='control controlSmall controlWide controlSecondary'><i class="fas fa-eye-slash" aria-hidden="true"></i>
+            <button id='btnHideAll' class='control controlSmall controlWide controlSecondary'><i class="fas fa-eye-slash" aria-hidden="true"></i>
         <div class='controlText'>Hide all</div>
       </button>
     </div>
     <div id='creditsPanel' class='flexCol'>
-      <div id='credits'>© 2025 <a href="https://sawczak.com" title="Visit Luke Sawczak's website">Luke Sawczak</a></div>
+      <div id='credits'>© <span id="copyrightYear">2025</span> <a href="https://sawczak.com" title="Visit Luke Sawczak's website">Luke Sawczak</a></div>
     </div>
   </div>
 </div>
 <!-- partial -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
 <script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
-<script src='https://tools.unfamiliarplace.com/common/includes/misc/app-tools.js'></script>
-<script src='https://tools.unfamiliarplace.com/common/includes/misc/jquery-ui-options.js'></script><script  src="./script.js"></script>
+<script src='https://t.sawczak.com/common/includes/misc/app-tools.js'></script>
+<script src='https://t.sawczak.com/common/includes/misc/jquery-ui-options.js'></script><script  src="./script.js"></script>
 
 </body>
 </html>
