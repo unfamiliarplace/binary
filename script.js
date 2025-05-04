@@ -54,10 +54,43 @@ const setRandomBits = () => {
     updateBits();
 }
 
+const handleBinaryFocusout = (e) => {
+    let bin = e.target.value.trim();
+    if (bin.length === 0) {
+        e.target.value = (app.optPadBinary.value()) ? '0'.repeat(app.nBits) : '0';
+        handleBinaryUpdate(e);
+    }
+}
+
+const handleDecimalFocusout = (e) => {
+    let dec = e.target.value.trim();
+    if (dec.length === 0) {
+        e.target.value = '0';
+        handleDecimalUpdate(e)
+    }
+}
+
+const handleHexFocusout = (e) => {
+    let hex = e.target.value.trim();
+    if (hex.length === 0) {
+        e.target.value = '0';
+        handleHexUpdate(e);
+    }
+}
+
+const handleAsciiFocusout = (e) => {
+    let ascii = e.target.value;
+    if (ascii.length === 0) {
+        e.target.value = '&#00;';
+        handleAsciiUpdate(e)
+    }
+}
+
 const handleBinaryUpdate = (e) => {
     let bin = e.target.value.trim();
     if (bin.length === 0) {
-        bin = 0;
+        return;
+        // bin = 0;
     }
 
     let dec = parseInt(bin, 2);
@@ -69,6 +102,7 @@ const handleDecimalUpdate = (e) => {
     let dec = e.target.value.trim();
     if (dec.length === 0) {
         return;
+        // dec = '0';
     }
 
     dec = parseInt(dec);
@@ -81,6 +115,7 @@ const handleHexUpdate = (e) => {
     let hex = e.target.value.trim();
     if (hex.length === 0) {
         return;
+        // hex = '0';
     }
 
     let dec = parseInt(hex, 16);
@@ -92,6 +127,7 @@ const handleAsciiUpdate = (e) => {
     let ascii = e.target.value;
     if (ascii.length === 0) {
         return;
+        // ascii = '';
     }
 
     app.bitStates = asciiToBits(ascii);
@@ -314,18 +350,20 @@ const bindControls = () => {
 
 const bindResults = () => {
     let mapping = {
-        'binaryResult'  : handleBinaryUpdate,
-        'decimalResult' : handleDecimalUpdate,
-        'hexResult'     : handleHexUpdate,
-        'asciiResult'   : handleAsciiUpdate
+        'binaryResult'  : [handleBinaryUpdate, handleBinaryFocusout],
+        'decimalResult' : [handleDecimalUpdate, handleDecimalFocusout],
+        'hexResult'     : [handleHexUpdate, handleHexFocusout],
+        'asciiResult'   : [handleAsciiUpdate, handleAsciiFocusout]
     };
 
     let el;
-    for (const [id, cb] of Object.entries(mapping)) {
+    for (const [id, cbs] of Object.entries(mapping)) {
+        [cbUpdate, cbFocusout] = cbs;
         el = $(`#${id}`);
-        el.change(cb);
-        el.keyup(cb);
-        el.mouseup(cb);
+        el.change(cbUpdate);
+        el.keyup(cbUpdate);
+        el.mouseup(cbUpdate);
+        el.focusout(cbFocusout);
     }
 }
 

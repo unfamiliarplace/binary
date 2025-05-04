@@ -259,8 +259,8 @@ input.result {
 
 
 .control.copyButton {
-  width: 80px;
-  min-width: 80px;
+  width: 40px;
+  min-width: 40px;
   color: white;
   background: none;
   border-radius: 5px;
