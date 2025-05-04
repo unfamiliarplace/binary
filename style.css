@@ -256,36 +256,15 @@ input.result {
   gap: 15px;
 }
 
-/* TODO */
 
-.copyPanel {
-  margin-left: 10px;
+
+.control.copyButton {
   width: 80px;
-}
-
-.copyButton {
-  width: 30px;
+  min-width: 80px;
   color: white;
   background: none;
   border-radius: 5px;
   font-size: 17px;
-}
-
-.copyButton.fade {
-  transition-duration: 2s;
-  transition-timing-function: ease;
-}
-
-.copyButton:not(.copied):not(.fade):hover {
-  background: rgba(155, 155, 155, 0.5);
-}
-
-.copyButton.copied {
-  background: #227733;
-}
-
-#copyBinaryPanel {
-  margin-right: -90px;
 }
 
 /* jquery UI */

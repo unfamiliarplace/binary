@@ -119,6 +119,12 @@ const handlePadBinaryUpdate = () => {
     toggleResetButton();
 }
 
+const handleBitUpdate = (e) => {
+    let id = parseInt($(e.target).attr('data-bit-index'));
+    app.bitStates[id] = app.bitStates[id] === 0 ? 1 : 0;
+    updateBits();
+}
+
 const drawBit = (i) => {
     let column = 2 ** i;
     let clState, contentState;
@@ -146,7 +152,7 @@ const drawBits = () => {
     }
 
     // Bind
-    $(".bit").click(handleBitChange);
+    $(".bit").click(handleBitUpdate);
 
     // Toggle labels and columns
     toggleShowing(app.optShow01, '.bitLabel');
@@ -222,6 +228,13 @@ const asciiToBits = ascii => {
     }
 
     return decimalToBits(dec);
+}
+
+const updateBits = () => {
+    drawBits();
+    updateResults();
+    toggleFillClearButtons();
+    toggleResetButton();
 }
 
 const updateLimits = () => {
@@ -316,10 +329,16 @@ const bindResults = () => {
     }
 }
 
-const handleBitChange = (e) => {
-    let id = parseInt($(e.target).attr('data-bit-index'));
-    app.bitStates[id] = app.bitStates[id] === 0 ? 1 : 0;
-    updateBits();
+const copyResult = (el, keyword) => {
+    let val = el.val();
+    copyToast = Copy.copyToast(copyToast, val, `Copied ${keyword}: ${val}`);
+}
+
+const bindCopyButtons = () => {
+    $('#btnCopyBinary').click(() => { copyResult($('#binaryResult'), 'binary'); } );
+    $('#btnCopyDecimal').click(() => { copyResult($('#decimalResult'), 'decimal'); } );
+    $('#btnCopyHex').click(() => { copyResult($('#hexResult'), 'hex'); } );
+    $('#btnCopyAscii').click(() => { copyResult($('#asciiResult'), 'ASCII'); } );
 }
 
 const createDynamicOptions = () => {
@@ -355,19 +374,13 @@ const setDynamicOptionDefaults = () => {
     app.optPadBinary.value(optDefaultPadBinary);
 }
 
-const updateBits = () => {
-    drawBits();
-    updateResults();
-    toggleFillClearButtons();
-    toggleResetButton();
-}
-
 const initialize = () => {
     app = new App();
 
     createDynamicOptions();
     bindControls();
     bindResults();
+    bindCopyButtons();
     reset();
 }
 
@@ -384,6 +397,7 @@ const optDefaultShowHex = false;
 const optDefaultShowAscii = false;
 const optDefaultPadBinary = false;
 
+let copyToast = null;
 
 class App {
     nBits;
@@ -408,60 +422,3 @@ class App {
 
 let app;
 $(document).ready(initialize);
-
-// TODO replace the below with tools version
-
-$("#copyBinary").click((e) => {
-    copyToClipboard($("#binaryResult").val());
-    pingCopy("#copyBinary");
-});
-
-$("#copyDecimal").click((e) => {
-    copyToClipboard($("#decimalResult").val());
-    pingCopy("#copyDecimal");
-});
-
-$("#copyHex").click((e) => {
-    copyToClipboard($("#decimalResult").val().toUpperCase());
-    pingCopy("#copyHex");
-});
-
-$("#copyAscii").click((e) => {
-    copyToClipboard($("#decimalResult").val());
-    pingCopy("#copyAscii");
-});
-
-// https://www.30secondsofcode.org/js/s/copy-to-clipboard
-const copyToClipboard = (str) => {
-    const el = document.createElement("textarea");
-    el.value = str;
-    el.setAttribute("readonly", "");
-    el.style.position = "absolute";
-    el.style.left = "-9999px";
-    document.body.appendChild(el);
-    const selected =
-        document.getSelection().rangeCount > 0
-            ? document.getSelection().getRangeAt(0)
-            : false;
-    el.select();
-    document.execCommand("copy");
-    document.body.removeChild(el);
-    if (selected) {
-        document.getSelection().removeAllRanges();
-        document.getSelection().addRange(selected);
-    }
-};
-
-const pingCopy = selector => {
-    $('.copyButton').removeClass('copied');
-    $('.copyButton').removeClass('fade');
-
-    $(selector).addClass("copied");
-    setTimeout(() => {
-        $(selector).removeClass("copied");
-        $(selector).addClass("fade");
-    }, 1000);
-    setTimeout(() => {
-        $(selector).removeClass("fade");
-    }, 2000);
-}
