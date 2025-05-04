@@ -17,16 +17,16 @@
 <div id='app' class='flexCol'>
     <div id='topPanel'>
         <div id='titlePanel' class='flexRow'>
-            <h1 id='title'>Binary Conversions</h1>
+            <h1 id='title'>Binary</h1>
         </div>
         <div id='instructionsPanel' class='flexRow'>Click on bits or enter conversions directly.</div>
     </div>
     <div class='middlePanel'>
-        <div id='controlPanel' class='flexRow'>
+        <div id='controlsPanel' class='flexRow'>
             <div class='flexCol'>
-                <label for='optNBits'># bits</label>
+                <label for='optNBits' class='spinnerLabel'># bits</label>
             </div>
-            <input id='optNBits' type='number' min='1' max='16' value='8'></input>
+            <input id='optNBits' type='number' min='1' max='16' value='8'>
             <button id='btnFillBits' class='control'><i class="fas fa-plane-departure" aria-hidden="true"></i>
                 <div class='controlText'>Fill</div>
             </button>
@@ -130,9 +130,9 @@
     </div>
     <div id='bottomPanel'>
         <div class='optionsPanel flexRow' id='optionsPanel1'>
-            <label for="optShow10" class="optionCheckboxLabel"><input type='checkbox' id="optShow10"
+            <label for="optShow01" class="optionCheckboxLabel"><input type='checkbox' id="optShow01"
                                                                       class="optionCheckboxInput"><span
-                    class="optionCheckboxLabelText">1/0</span></label>
+                    class="optionCheckboxLabelText">0/1</span></label>
             <label for="optShowColumns" class="optionCheckboxLabel"><input type='checkbox' id="optShowColumns"
                                                                            class="optionCheckboxInput"><span
                     class="optionCheckboxLabelText">Columns</span></label>

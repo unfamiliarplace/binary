@@ -1,19 +1,21 @@
 const showAll = () => {
-    app.optShow10.value(true);
+    app.optShow01.value(true);
     app.optShowColumns.value(true);
     app.optShowBinary.value(true);
     app.optShowDecimal.value(true);
     app.optShowHex.value(true);
     app.optShowAscii.value(true);
+    toggleShowHideButtons();
 }
 
 const hideAll = () => {
-    app.optShow10.value(false);
+    app.optShow01.value(false);
     app.optShowColumns.value(false);
     app.optShowBinary.value(false);
     app.optShowDecimal.value(false);
     app.optShowHex.value(false);
     app.optShowAscii.value(false);
+    toggleShowHideButtons();
 }
 
 const reset = () => {
@@ -134,7 +136,7 @@ const drawBits = () => {
     $(".bit").click(handleBitChange);
 
     // Toggle labels and columns
-    toggleShowing(app.optShow10, '.bitLabel');
+    toggleShowing(app.optShow01, '.bitLabel');
     toggleShowing(app.optShowColumns, '.bitColumn');
 }
 
@@ -229,6 +231,22 @@ const toggleShowing = (opt, selector) => {
     } else {
         el.addClass('hide');
     }
+
+    toggleShowHideButtons();
+}
+
+const toggleShowHideButtons = () => {
+    let values = [
+        app.optShow01.value(),
+        app.optShowColumns.value(),
+        app.optShowBinary.value(),
+        app.optShowDecimal.value(),
+        app.optShowHex.value(),
+        app.optShowAscii.value(),
+    ];
+
+    $('#btnShowAll').prop('disabled', values.every(Boolean));
+    $('#btnHideAll').prop('disabled', ! values.some(Boolean));
 }
 
 const bindControls = () => {
@@ -267,7 +285,7 @@ const handleBitChange = (e) => {
 }
 
 const createDynamicOptions = () => {
-    app.optShow10 = new OptionCheckbox($('#optShow10'));
+    app.optShow01 = new OptionCheckbox($('#optShow01'));
     app.optShowColumns = new OptionCheckbox($('#optShowColumns'));
     app.optShowBinary = new OptionCheckbox($('#optShowBinary'));
     app.optShowDecimal = new OptionCheckbox($('#optShowDecimal'));
@@ -279,7 +297,7 @@ const createDynamicOptions = () => {
 }
 
 const bindDynamicOptions = () => {
-    app.optShow10.change(() => { toggleShowing(app.optShow10, '.bitLabel'); });
+    app.optShow01.change(() => { toggleShowing(app.optShow01, '.bitLabel'); });
     app.optShowColumns.change(() => { toggleShowing(app.optShowColumns, '.bitColumn'); });
     app.optShowBinary.change(() => { toggleShowing(app.optShowBinary, '#binaryPanel'); });
     app.optShowDecimal.change(() => { toggleShowing(app.optShowDecimal, '#decimalPanel'); });
@@ -288,7 +306,7 @@ const bindDynamicOptions = () => {
 }
 
 const setDynamicOptionDefaults = () => {
-    app.optShow10.value(optDefaultShow10);
+    app.optShow01.value(optDefaultShow10);
     app.optShowColumns.value(optDefaultShowColumns);
     app.optShowBinary.value(optDefaultShowBinary);
     app.optShowDecimal.value(optDefaultShowDecimal);
