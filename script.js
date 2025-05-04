@@ -6,6 +6,7 @@ const showAll = () => {
     app.optShowHex.value(true);
     app.optShowAscii.value(true);
     toggleShowHideButtons();
+    toggleResetButton();
 }
 
 const hideAll = () => {
@@ -16,6 +17,7 @@ const hideAll = () => {
     app.optShowHex.value(false);
     app.optShowAscii.value(false);
     toggleShowHideButtons();
+    toggleResetButton();
 }
 
 const reset = () => {
@@ -24,12 +26,12 @@ const reset = () => {
 
     $("#optNBits").val(8);
     handleNBitsUpdate();
+
+    toggleResetButton();
 }
 
-const setRandomBits = () => {
-    let dec = Tools.random(2 ** app.nBits);
-    app.bitStates = decimalToBits(dec);
-    updateBits();
+const toggleButton = (el, enabled) => {
+    el.prop('disabled', ! enabled);
 }
 
 const fillBits = () => {
@@ -43,6 +45,12 @@ const clearBits = () => {
     for (let i = 0; i < app.nBits; i++) {
         app.bitStates[i] = 0;
     }
+    updateBits();
+}
+
+const setRandomBits = () => {
+    let dec = Tools.random(2 ** app.nBits);
+    app.bitStates = decimalToBits(dec);
     updateBits();
 }
 
@@ -104,6 +112,11 @@ const handleNBitsUpdate = () => {
 
     updateBits();
     updateLimits();
+}
+
+const handlePadBinaryUpdate = () => {
+    updateResults();
+    toggleResetButton();
 }
 
 const drawBit = (i) => {
@@ -234,6 +247,7 @@ const toggleShowing = (opt, selector) => {
     }
 
     toggleShowHideButtons();
+    toggleResetButton();
 }
 
 const toggleShowHideButtons = () => {
@@ -246,13 +260,31 @@ const toggleShowHideButtons = () => {
         app.optShowAscii.value(),
     ];
 
-    $('#btnShowAll').prop('disabled', values.every(Boolean));
-    $('#btnHideAll').prop('disabled', ! values.some(Boolean));
+    toggleButton($('#btnShowAll'), ! values.some(Boolean));
+    toggleButton($('#btnHideAll'), values.every(Boolean));
 }
 
 const toggleFillClearButtons = () => {
-    $('#btnFillBits').prop('disabled', app.bitStates.every(Boolean));
-    $('#btnClearBits').prop('disabled', ! app.bitStates.some(Boolean));
+    toggleButton($('#btnFillBits'), ! app.bitStates.every(Boolean));
+    toggleButton($('#btnClearBits'), app.bitStates.some(Boolean));
+}
+
+const toggleResetButton = () => {
+    let checks = [
+        app.nBits === 8,
+        ! app.bitStates.some(Boolean),
+
+        app.optShow01.value() === optDefaultShow10,
+        app.optShowColumns.value() === optDefaultShowColumns,
+        app.optShowBinary.value() === optDefaultShowBinary,
+
+        app.optShowDecimal.value() === optDefaultShowDecimal,
+        app.optShowHex.value() === optDefaultShowHex,
+        app.optShowAscii.value() === optDefaultShowAscii,
+        app.optPadBinary.value() === optDefaultPadBinary
+    ];
+
+    toggleButton($('#btnReset'), ! checks.every(Boolean));
 }
 
 const bindControls = () => {
@@ -310,7 +342,7 @@ const bindDynamicOptions = () => {
     app.optShowDecimal.change(() => { toggleShowing(app.optShowDecimal, '#decimalPanel'); });
     app.optShowHex.change(() => { toggleShowing(app.optShowHex, '#hexPanel'); });
     app.optShowAscii.change(() => { toggleShowing(app.optShowAscii, '#asciiPanel'); });
-    app.optPadBinary.change(updateResults);
+    app.optPadBinary.change(handlePadBinaryUpdate);
 }
 
 const setDynamicOptionDefaults = () => {
@@ -327,6 +359,7 @@ const updateBits = () => {
     drawBits();
     updateResults();
     toggleFillClearButtons();
+    toggleResetButton();
 }
 
 const initialize = () => {
