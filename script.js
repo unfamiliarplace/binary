@@ -1,26 +1,27 @@
 const showAll = () => {
-    app.optShow10(true);
-    app.optShowColumns(true);
-    app.optShowBinary(true);
-    app.optShowDecimal(true);
-    app.optShowHex(true);
-    app.optShowAscii(true);
+    app.optShow10.value(true);
+    app.optShowColumns.value(true);
+    app.optShowBinary.value(true);
+    app.optShowDecimal.value(true);
+    app.optShowHex.value(true);
+    app.optShowAscii.value(true);
 }
 
 const hideAll = () => {
-    app.optShow10(false);
-    app.optShowColumns(false);
-    app.optShowBinary(false);
-    app.optShowDecimal(false);
-    app.optShowHex(false);
-    app.optShowAscii(false);
+    app.optShow10.value(false);
+    app.optShowColumns.value(false);
+    app.optShowBinary.value(false);
+    app.optShowDecimal.value(false);
+    app.optShowHex.value(false);
+    app.optShowAscii.value(false);
 }
 
 const reset = () => {
+    app.reset();
+    setDynamicOptionDefaults();
+
     $("#optNBits").val(8);
     handleNBitsUpdate();
-
-    setDynamicOptionDefaults();
 }
 
 const setRandomBits = () => {
@@ -128,6 +129,13 @@ const drawBits = () => {
     for (let i = 0; i < app.bitStates.length; i++) {
         parent.append(drawBit(i));
     }
+
+    // Bind
+    $(".bit").click(handleBitChange);
+
+    // Toggle labels and columns
+    toggleShowing(app.optShow10, '.bitLabel');
+    toggleShowing(app.optShowColumns, '.bitColumn');
 }
 
 const updateResults = () => {
@@ -228,9 +236,8 @@ const bindControls = () => {
 
     $("#btnFillBits").click(fillBits);
     $("#btnClearBits").click(clearBits);
+    $("#btnRandomBits").click(setRandomBits);
     $("#btnReset").click(reset);
-    $("#random").click(setRandomBits);
-
 
     $("#btnShowAll").click(showAll);
     $("#btnHideAll").click(hideAll);
@@ -259,11 +266,6 @@ const handleBitChange = (e) => {
     updateBits();
 }
 
-const bindBits = () => {
-    $(".bit").unbind();
-    $(".bit").click(handleBitChange);
-}
-
 const createDynamicOptions = () => {
     app.optShow10 = new OptionCheckbox($('#optShow10'));
     app.optShowColumns = new OptionCheckbox($('#optShowColumns'));
@@ -277,26 +279,25 @@ const createDynamicOptions = () => {
 }
 
 const bindDynamicOptions = () => {
-    app.optShow10.change(() => {toggleShowing(app.optShow10, '.bitLabel'); });
-    app.optShowColumns.change(() => {toggleShowing(app.optShowColumns, '.bitColumn'); });
-    app.optShowBinary.change(() => {toggleShowing(app.optShowBinary, '#binaryPanel'); });
-    app.optShowDecimal.change(() => {toggleShowing(app.optShowDecimal, '#decimalPanel'); });
-    app.optShowHex.change(() => {toggleShowing(app.optShowHex, '#hexPanel'); });
-    app.optShowAscii.change(() => {toggleShowing(app.optShowAscii, '#asciiPanel'); });
+    app.optShow10.change(() => { toggleShowing(app.optShow10, '.bitLabel'); });
+    app.optShowColumns.change(() => { toggleShowing(app.optShowColumns, '.bitColumn'); });
+    app.optShowBinary.change(() => { toggleShowing(app.optShowBinary, '#binaryPanel'); });
+    app.optShowDecimal.change(() => { toggleShowing(app.optShowDecimal, '#decimalPanel'); });
+    app.optShowHex.change(() => { toggleShowing(app.optShowHex, '#hexPanel'); });
+    app.optShowAscii.change(() => { toggleShowing(app.optShowAscii, '#asciiPanel'); });
 }
 
 const setDynamicOptionDefaults = () => {
-    app.optShow10.value(false);
-    app.optShowColumns.value(false);
-    app.optShowBinary.value(false);
-    app.optShowDecimal.value(false);
-    app.optShowHex.value(false);
-    app.optShowAscii.value(false);
+    app.optShow10.value(optDefaultShow10);
+    app.optShowColumns.value(optDefaultShowColumns);
+    app.optShowBinary.value(optDefaultShowBinary);
+    app.optShowDecimal.value(optDefaultShowDecimal);
+    app.optShowHex.value(optDefaultShowHex);
+    app.optShowAscii.value(optDefaultShowAscii);
 }
 
 const updateBits = () => {
     drawBits();
-    bindBits();
     updateResults();
 }
 
@@ -314,6 +315,14 @@ const initialize = () => {
 const minBits = 1;
 const maxBits = 16;
 
+const optDefaultShow10 = false;
+const optDefaultShowColumns = false;
+const optDefaultShowBinary = false;
+const optDefaultShowDecimal = false;
+const optDefaultShowHex = false;
+const optDefaultShowAscii = false;
+
+
 class App {
     nBits;
     bitStates;
@@ -325,6 +334,10 @@ class App {
     optShowAscii;
 
     constructor() {
+        this.reset();
+    }
+
+    reset = () => {
         this.nBits = 8;
         this.bitStates = [0, 0, 0, 0, 0, 0, 0, 0];
     }

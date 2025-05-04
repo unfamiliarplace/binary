@@ -133,6 +133,7 @@ body {
 
 .optionsPanel {
   margin-top: 25px;
+  gap: 10px;
 }
 
 #creditsPanel {
@@ -206,6 +207,11 @@ input[type="number"].result {
   padding: 3px 10px 3px 30px;
 }
 
+input.result {
+  border: none;
+  border-bottom: 1px solid #fff;
+  border-radius: 0;
+}
 
 .middlePanel {
   flex-grow: 1;
@@ -217,4 +223,8 @@ input[type="number"].result {
 
 #topPanel {
   margin-bottom: 30px;
+}
+
+#resultsPanel {
+  gap: 15px;
 }
