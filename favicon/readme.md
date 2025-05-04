@@ -1,0 +1,1 @@
+[Generate Favicon](https://favicon.io/)
