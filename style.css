@@ -1,0 +1,206 @@
+body {
+  background: #052577;
+}
+
+#app {
+  font-family: "Helvetica", "Arial", sans-serif;
+  background: #052577;
+  height: 98vh;
+  width: 100%;
+  margin: 0;
+  color: white;
+  box-sizing: border-box;
+}
+
+.flexCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.flexRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.control {
+  margin: 0px 10px;
+  padding: 3px;
+  height: 30px;
+  font-size: 16px;
+  min-width: 110px;
+}
+
+.controlWide {
+  min-width: 150px;
+}
+
+.controlSmall {
+  font-size: 14px;
+  height: 26px;
+}
+
+.controlSecondary {
+}
+
+.controlText {
+  display: inline-block;
+  padding-left: 8px;
+}
+
+#bitsPanel {
+  flex-direction: row-reverse;
+}
+
+.bit {
+  margin: 5px;
+  height: 72px;
+  width: 72px;
+  color: white;
+  font-size: 35px;
+  border-radius: 5px;
+}
+
+.bitLabel, .controlText, .control i {
+  pointer-events: none;
+}
+
+.bit-off {
+  background: #333;
+}
+
+.bit-off:hover {
+  background: #555;
+}
+
+.bit-on {
+  background: #227733;
+}
+
+.result {
+  display: block;
+  color: white;
+  font-size: 23px;
+  text-align: center;
+  width: 280px;
+  background: #031244;
+  padding: 5px 20px;
+  height: 28px;
+}
+
+#title {
+  font-size: 42px;
+}
+
+#credits {
+  width: auto;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+.bitColumn {
+  text-align: center;
+  font-size: 17px;
+}
+
+#instructionsPanel {
+  margin-top: -25px;
+  font-style: italic;
+}
+
+#bitsPanel {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.optionsPanel {
+  margin-top: 25px;
+}
+
+#creditsPanel {
+  margin-top: 20px;
+  background: #111;
+  font-size: 14px;
+  text-align: center;
+  min-height: 27px;
+}
+
+#nBits {
+  width: 80px;
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+input {
+  text-align: center;
+  border-radius: 5px;
+}
+
+label {
+  margin-right: 10px;
+  font-size: 18px;
+  text-align: right;
+}
+
+label.resultLabel {
+  width: 80px;
+}
+
+#hexResult {
+  text-transform: uppercase;
+}
+
+#credits a {
+  color: white;
+}
+
+.copyPanel {
+  margin-left: 10px;
+  width: 80px;
+}
+
+.copyButton {
+  width: 30px;
+  color: white;
+  background: none;
+  border-radius: 5px;
+  font-size: 17px;
+}
+
+.copyButton.fade {
+  transition-duration: 2s;
+  transition-timing-function: ease;
+}
+
+.copyButton:not(.copied):not(.fade):hover {
+  background: rgba(155, 155, 155, 0.5);
+}
+
+.copyButton.copied {
+  background: #227733;
+}
+
+
+#copyBinaryPanel {
+  margin-right: -90px;
+}
+
+input[type="number"].result {
+  padding: 3px 10px 3px 30px;
+}
+
+
+.middlePanel {
+  flex-grow: 1;
+}
+
+#bottomPanel, #topPanel {
+  flex-shrink: 0;
+}
+
+#topPanel {
+  margin-bottom: 30px;
+}
