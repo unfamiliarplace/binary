@@ -113,6 +113,7 @@ body {
 }
 
 .hide {
+  display: none;
   visibility: hidden;
 }
 
@@ -180,6 +181,35 @@ label.resultLabel {
   color: white;
 }
 
+input[type="number"].result {
+  padding: 3px 10px 3px 30px;
+}
+
+input.result {
+  border: none;
+  border-bottom: 1px solid #fff;
+  border-radius: 0;
+}
+
+.middlePanel {
+  flex-grow: 1;
+}
+
+#bottomPanel, #topPanel {
+  flex-shrink: 0;
+}
+
+#topPanel {
+  margin-bottom: 30px;
+}
+
+#resultsPanel {
+  height: 200px;
+  gap: 15px;
+}
+
+/* TODO */
+
 .copyPanel {
   margin-left: 10px;
   width: 80px;
@@ -208,30 +238,4 @@ label.resultLabel {
 
 #copyBinaryPanel {
   margin-right: -90px;
-}
-
-input[type="number"].result {
-  padding: 3px 10px 3px 30px;
-}
-
-input.result {
-  border: none;
-  border-bottom: 1px solid #fff;
-  border-radius: 0;
-}
-
-.middlePanel {
-  flex-grow: 1;
-}
-
-#bottomPanel, #topPanel {
-  flex-shrink: 0;
-}
-
-#topPanel {
-  margin-bottom: 30px;
-}
-
-#resultsPanel {
-  gap: 15px;
 }

@@ -150,12 +150,13 @@ const updateResults = () => {
 const formatBinary = () => {
     let chars = app.bitStates.slice().reverse().join("");
 
-    // TODO add option to pad (i.e. not trim!) str to # of bits
-    chars = Tools.trimChars(chars, '0', true, false);
+    if (! app.optPadBinary.value()) {
+        chars = Tools.trimChars(chars, '0', true, false);
 
-    // at least 1 zero
-    if (chars.length === 0) {
-        chars = '0';
+        // at least 1 zero
+        if (chars.length === 0) {
+            chars = '0';
+        }
     }
 
     return chars;
@@ -291,6 +292,7 @@ const createDynamicOptions = () => {
     app.optShowDecimal = new OptionCheckbox($('#optShowDecimal'));
     app.optShowHex = new OptionCheckbox($('#optShowHex'));
     app.optShowAscii = new OptionCheckbox($('#optShowAscii'));
+    app.optPadBinary = new OptionCheckbox($('#optPadBinary'));
 
     bindDynamicOptions();
     setDynamicOptionDefaults();
@@ -303,6 +305,7 @@ const bindDynamicOptions = () => {
     app.optShowDecimal.change(() => { toggleShowing(app.optShowDecimal, '#decimalPanel'); });
     app.optShowHex.change(() => { toggleShowing(app.optShowHex, '#hexPanel'); });
     app.optShowAscii.change(() => { toggleShowing(app.optShowAscii, '#asciiPanel'); });
+    app.optPadBinary.change(updateResults);
 }
 
 const setDynamicOptionDefaults = () => {
@@ -311,7 +314,8 @@ const setDynamicOptionDefaults = () => {
     app.optShowBinary.value(optDefaultShowBinary);
     app.optShowDecimal.value(optDefaultShowDecimal);
     app.optShowHex.value(optDefaultShowHex);
-    app.optShowAscii.value(optDefaultShowAscii);
+    app.optShowAscii.value(optDefaultShowAscii)
+    app.optPadBinary.value(optDefaultPadBinary);
 }
 
 const updateBits = () => {
@@ -339,6 +343,7 @@ const optDefaultShowBinary = false;
 const optDefaultShowDecimal = false;
 const optDefaultShowHex = false;
 const optDefaultShowAscii = false;
+const optDefaultPadBinary = true;
 
 
 class App {
@@ -350,6 +355,7 @@ class App {
     optShowDecimal;
     optShowHex;
     optShowAscii;
+    optPadBinary;
 
     constructor() {
         this.reset();

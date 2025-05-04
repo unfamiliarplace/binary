@@ -36,9 +36,6 @@
             <button id='btnRandomBits' class='control'><i class="fas fa-dice" aria-hidden="true"></i>
                 <div class='controlText'>Random</div>
             </button>
-            <button id='btnReset' class='control'><i class="fas fa-trash" aria-hidden="true"></i>
-                <div class='controlText'>Reset</div>
-            </button>
         </div>
     </div>
     <div class='middlePanel'>
@@ -150,13 +147,21 @@
                     class="optionCheckboxLabelText">ASCII</span></label>
         </div>
         <div class='optionsPanel flexRow' id='optionsPanel2'>
-            <button id='btnShowAll' class='control controlSmall controlWide controlSecondary'><i class="fas fa-eye"
+            <button id='btnShowAll' class='control  controlWide controlSecondary'><i class="fas fa-eye"
                                                                                                  aria-hidden="true"></i>
                 <div class='controlText'>Show all</div>
             </button>
-            <button id='btnHideAll' class='control controlSmall controlWide controlSecondary'><i
+            <button id='btnHideAll' class='control  controlWide controlSecondary'><i
                     class="fas fa-eye-slash" aria-hidden="true"></i>
                 <div class='controlText'>Hide all</div>
+            </button>
+        </div>
+        <div class="optionsPanel flexRow" id="optionsPanel3">
+            <label for="optPadBinary" class="optionCheckboxLabel"><input type='checkbox' id="optPadBinary"
+                                                                         class="optionCheckboxInput"><span
+                    class="optionCheckboxLabelText">Pad binary to # bits</span></label>
+            <button id='btnReset' class='control'><i class="fas fa-trash" aria-hidden="true"></i>
+                <div class='controlText'>Reset</div>
             </button>
         </div>
         <div id='creditsPanel' class='flexCol'>
