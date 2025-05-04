@@ -369,7 +369,7 @@ const bindResults = () => {
 
 const copyResult = (el, keyword) => {
     let val = el.val();
-    copyToast = Copy.copyToast(copyToast, val, `Copied ${keyword}: ${val}`);
+    copyToast = Copy.toast(copyToast, val, `Copied ${keyword}: ${val}`);
 }
 
 const bindCopyButtons = () => {
