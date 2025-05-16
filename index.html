@@ -3,169 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <title>Binary</title>
-    <link rel='stylesheet' href='https://csshake.surge.sh/csshake.min.css'>
-    <link rel='stylesheet' href='https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css'>
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css'>
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css'>
-    <link rel="stylesheet" href="./style.css">
-
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
     <link rel="manifest" href="favicon/site.webmanifest">
+
+    <link rel='stylesheet' href='https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css'>
+
+    <link rel='stylesheet' href='https://g.sawczak.com/web-tools/css/app-base.css'>
+    <link rel='stylesheet' href='https://g.sawczak.com/web-tools/css/jquery-ui-options.css'>
+
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 <!-- partial:index.partial.html -->
 <div id='app' class='flexCol'>
-    <div id='topPanel'>
+    <div id='header'>
         <div id='titlePanel' class='flexRow'>
             <h1 id='title'>Binary</h1>
         </div>
         <div id='instructionsPanel' class='flexRow'>Click on bits or enter conversions directly.</div>
     </div>
-    <div class='middlePanel'>
-        <div id='controlsPanel' class='flexRow'>
-            <div class='flexCol flexColCenter'>
-                <label for='optNBits' class='spinnerLabel'># bits</label>
-            </div>
-            <input id='optNBits' type='number' min='1' max='16' value='8'>
-            <button id='btnFillBits' class='control'><i class="fas fa-plane-departure" aria-hidden="true"></i>
-                <div class='controlText'>Fill</div>
-            </button>
-            <button id='btnClearBits' class='control' disabled><i class="fas fa-plane-arrival" aria-hidden="true"></i>
-                <div class='controlText'>Clear</div>
-            </button>
-            <button id='btnRandomBits' class='control'><i class="fas fa-dice" aria-hidden="true"></i>
-                <div class='controlText'>Random</div>
-            </button>
-        </div>
-    </div>
-    <div class='middlePanel'>
-        <div id='bitsPanel' class='flexRow'>
-            <div class='bitPanel flexCol'>
-                <button id='bit-7' class='bit bit-off'><span class='bitLabel hide'>0</span></button>
-                <div class='bitColumn hide'>128</div>
-            </div>
-            <div class='bitPanel flexCol'>
-                <button id='bit-6' class='bit bit-off'><span class='bitLabel hide'>0</span></button>
-                <div class='bitColumn hide'>64</div>
-            </div>
-            <div class='bitPanel flexCol'>
-                <button id='bit-5' class='bit bit-off'><span class='bitLabel hide'>0</span></button>
-                <div class='bitColumn hide'>32</div>
-            </div>
-            <div class='bitPanel flexCol'>
-                <button id='bit-4' class='bit bit-off'><span class='bitLabel hide'>0</span></button>
-                <div class='bitColumn hide'>16</div>
-            </div>
-            <div class='bitPanel flexCol'>
-                <button id='bit-3' class='bit bit-off'><span class='bitLabel hide'>0</span></button>
-                <div class='bitColumn hide'>8</div>
-            </div>
-            <div class='bitPanel flexCol'>
-                <button id='bit-2' class='bit bit-off'><span class='bitLabel hide'>0</span></button>
-                <div class='bitColumn hide'>4</div>
-            </div>
-            <div class='bitPanel flexCol'>
-                <button id='bit-1' class='bit bit-off'><span class='bitLabel hide'>0</span></button>
-                <div class='bitColumn hide'>2</div>
-            </div>
-            <div class='bitPanel flexCol'>
-                <button id='bit-0' class='bit bit-off'><span class='bitLabel hide'>0</span></button>
-                <div class='bitColumn hide'>1</div>
+    <div id="main" class="hideScrollbar flexCol">
+        <div class='middlePanel hideScrollbar'>
+            <div id='controlsPanel' class='flexRow'>
+                <div class='flexCol flexColCenter'>
+                    <label for='optNBits' class='spinnerLabel'># bits</label>
+                </div>
+                <input id='optNBits' type='number' min='1' max='16' value='8'>
+                <button id='btnFillBits' class='control'><i class="fas fa-plane-departure" aria-hidden="true"></i>
+                    <div class='controlText'>Fill</div>
+                </button>
+                <button id='btnClearBits' class='control' disabled><i class="fas fa-plane-arrival"
+                                                                      aria-hidden="true"></i>
+                    <div class='controlText'>Clear</div>
+                </button>
+                <button id='btnRandomBits' class='control'><i class="fas fa-dice" aria-hidden="true"></i>
+                    <div class='controlText'>Random</div>
+                </button>
             </div>
         </div>
-    </div>
-    <div class='middlePanel'>
-        <div id="resultsPanel" class="flexCol">
-            <div id='binaryPanel' class='flexRow hide'>
-                <div class='flexCol flexColCenter'>
-                    <label for='binaryResult' class='resultLabel'>binary</label>
+        <div class='middlePanel hideScrollbar'>
+            <div id='bitsPanel' class='flexRow'>
+                <div class='bitPanel flexCol'>
+                    <button id='bit-7' class='bit bit-off'><span class='bitLabel hide'>0</span></button>
+                    <div class='bitColumn hide'>128</div>
                 </div>
-                <input id='binaryResult' value='0' maxlength='8' class='result'></input>
-                <div class='copyPanel flexCol flexColCenter'>
-                    <button id='btnCopyBinary' class='control copyButton'>
-                        <i class="far fa-copy" aria-hidden="true"></i>
-                    </button>
+                <div class='bitPanel flexCol'>
+                    <button id='bit-6' class='bit bit-off'><span class='bitLabel hide'>0</span></button>
+                    <div class='bitColumn hide'>64</div>
                 </div>
-
-            </div>
-            <div id='decimalPanel' class='flexRow hide'>
-                <div class='flexCol flexColCenter'>
-                    <label for='decimalResult' class='resultLabel'>decimal</label>
+                <div class='bitPanel flexCol'>
+                    <button id='bit-5' class='bit bit-off'><span class='bitLabel hide'>0</span></button>
+                    <div class='bitColumn hide'>32</div>
                 </div>
-                <input id='decimalResult' value='0' type='number' max='255' min='0' class='result'></input>
-                <div class='copyPanel flexCol flexColCenter'>
-                    <button id='btnCopyDecimal' class='control copyButton'>
-                        <i class="far fa-copy" aria-hidden="true"></i>
-                    </button>
+                <div class='bitPanel flexCol'>
+                    <button id='bit-4' class='bit bit-off'><span class='bitLabel hide'>0</span></button>
+                    <div class='bitColumn hide'>16</div>
                 </div>
-            </div>
-            <div id='hexPanel' class='flexRow hide'>
-
-                <div class='flexCol flexColCenter'>
-                    <label for='hexResult' class='resultLabel'>hex</label>
+                <div class='bitPanel flexCol'>
+                    <button id='bit-3' class='bit bit-off'><span class='bitLabel hide'>0</span></button>
+                    <div class='bitColumn hide'>8</div>
                 </div>
-                <input id='hexResult' value='0' maxlength='2' class='result'></input>
-                <div class='copyPanel flexCol flexColCenter'>
-                    <button id='btnCopyHex' class='control copyButton'>
-                        <i class="far fa-copy" aria-hidden="true"></i>
-                    </button>
+                <div class='bitPanel flexCol'>
+                    <button id='bit-2' class='bit bit-off'><span class='bitLabel hide'>0</span></button>
+                    <div class='bitColumn hide'>4</div>
                 </div>
-            </div>
-            <div id='asciiPanel' class='flexRow hide'>
-
-                <div class='flexCol flexColCenter'>
-                    <label for='asciiResult' class='resultLabel'>ASCII</label>
+                <div class='bitPanel flexCol'>
+                    <button id='bit-1' class='bit bit-off'><span class='bitLabel hide'>0</span></button>
+                    <div class='bitColumn hide'>2</div>
                 </div>
-                <input id='asciiResult' value='' maxlength='1' class='result'></input>
-                <div class='copyPanel flexCol flexColCenter'>
-                    <button id='btnCopyAscii' class='control copyButton'>
-                        <i class="far fa-copy" aria-hidden="true"></i>
-                    </button>
+                <div class='bitPanel flexCol'>
+                    <button id='bit-0' class='bit bit-off'><span class='bitLabel hide'>0</span></button>
+                    <div class='bitColumn hide'>1</div>
                 </div>
             </div>
         </div>
-    </div>
-    <div id='bottomPanel'>
-        <div class='optionsPanel flexRow' id='optionsPanel1'>
-            <label for="optShow01" class="optionCheckboxLabel"><input type='checkbox' id="optShow01"
-                                                                      class="optionCheckboxInput"><span
-                    class="optionCheckboxLabelText">0/1</span></label>
-            <label for="optShowColumns" class="optionCheckboxLabel"><input type='checkbox' id="optShowColumns"
-                                                                           class="optionCheckboxInput"><span
-                    class="optionCheckboxLabelText">Columns</span></label>
-            <label for="optShowBinary" class="optionCheckboxLabel"><input type='checkbox' id="optShowBinary"
+        <div class='middlePanel hideScrollbar'>
+            <div id="resultsPanel" class="flexCol">
+                <div id='binaryPanel' class='resultPanel flexRow hide'>
+                    <div class='flexCol flexColCenter'>
+                        <label for='binaryResult' class='resultLabel'>binary</label>
+                    </div>
+                    <input id='binaryResult' value='0' maxlength='8' class='result'></input>
+                    <div class='copyPanel flexCol flexColCenter'>
+                        <button id='btnCopyBinary' class='control copyButton'>
+                            <i class="far fa-copy" aria-hidden="true"></i>
+                        </button>
+                    </div>
+
+                </div>
+                <div id='decimalPanel' class='resultPanel flexRow hide'>
+                    <div class='flexCol flexColCenter'>
+                        <label for='decimalResult' class='resultLabel'>decimal</label>
+                    </div>
+                    <input id='decimalResult' value='0' type='number' max='255' min='0' class='result'></input>
+                    <div class='copyPanel flexCol flexColCenter'>
+                        <button id='btnCopyDecimal' class='control copyButton'>
+                            <i class="far fa-copy" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+                <div id='hexPanel' class='resultPanel flexRow hide'>
+
+                    <div class='flexCol flexColCenter'>
+                        <label for='hexResult' class='resultLabel'>hex</label>
+                    </div>
+                    <input id='hexResult' value='0' maxlength='2' class='result'></input>
+                    <div class='copyPanel flexCol flexColCenter'>
+                        <button id='btnCopyHex' class='control copyButton'>
+                            <i class="far fa-copy" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+                <div id='asciiPanel' class='resultPanel flexRow hide'>
+
+                    <div class='flexCol flexColCenter'>
+                        <label for='asciiResult' class='resultLabel'>ASCII</label>
+                    </div>
+                    <input id='asciiResult' value='' maxlength='1' class='result'></input>
+                    <div class='copyPanel flexCol flexColCenter'>
+                        <button id='btnCopyAscii' class='control copyButton'>
+                            <i class="far fa-copy" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='middlePanel hideScrollbar'>
+            <div class='optionsPanel flexRow' id='optionsPanel1'>
+                <label for="optShow01" class="optionCheckboxLabel"><input type='checkbox' id="optShow01"
                                                                           class="optionCheckboxInput"><span
-                    class="optionCheckboxLabelText">Binary</span></label>
-            <label for="optShowDecimal" class="optionCheckboxLabel"><input type='checkbox' id="optShowDecimal"
+                        class="optionCheckboxLabelText">0/1</span></label>
+                <label for="optShowColumns" class="optionCheckboxLabel"><input type='checkbox' id="optShowColumns"
+                                                                               class="optionCheckboxInput"><span
+                        class="optionCheckboxLabelText">Columns</span></label>
+                <label for="optShowBinary" class="optionCheckboxLabel"><input type='checkbox' id="optShowBinary"
+                                                                              class="optionCheckboxInput"><span
+                        class="optionCheckboxLabelText">Binary</span></label>
+                <label for="optShowDecimal" class="optionCheckboxLabel"><input type='checkbox' id="optShowDecimal"
+                                                                               class="optionCheckboxInput"><span
+                        class="optionCheckboxLabelText">Decimal</span></label>
+                <label for="optShowHex" class="optionCheckboxLabel"><input type='checkbox' id="optShowHex"
                                                                            class="optionCheckboxInput"><span
-                    class="optionCheckboxLabelText">Decimal</span></label>
-            <label for="optShowHex" class="optionCheckboxLabel"><input type='checkbox' id="optShowHex"
-                                                                       class="optionCheckboxInput"><span
-                    class="optionCheckboxLabelText">Hex</span></label>
-            <label for="optShowAscii" class="optionCheckboxLabel"><input type='checkbox' id="optShowAscii"
-                                                                         class="optionCheckboxInput"><span
-                    class="optionCheckboxLabelText">ASCII</span></label>
+                        class="optionCheckboxLabelText">Hex</span></label>
+                <label for="optShowAscii" class="optionCheckboxLabel"><input type='checkbox' id="optShowAscii"
+                                                                             class="optionCheckboxInput"><span
+                        class="optionCheckboxLabelText">ASCII</span></label>
+            </div>
+            <div class='optionsPanel flexRow' id='optionsPanel2'>
+                <button id='btnShowAll' class='control  controlWide controlSecondary'><i class="fas fa-eye"
+                                                                                         aria-hidden="true"></i>
+                    <div class='controlText'>Show all</div>
+                </button>
+                <button id='btnHideAll' class='control  controlWide controlSecondary' disabled><i
+                        class="fas fa-eye-slash" aria-hidden="true"></i>
+                    <div class='controlText'>Hide all</div>
+                </button>
+            </div>
+            <div class="optionsPanel flexRow" id="optionsPanel3">
+                <label for="optPadBinary" class="optionCheckboxLabel"
+                       title="May make it difficult to manually enter binary values"><input type='checkbox'
+                                                                                            id="optPadBinary"
+                                                                                            class="optionCheckboxInput"><span
+                        class="optionCheckboxLabelText">Pad binary to # bits</span></label>
+                <button id='btnReset' class='control' disabled><i class="fas fa-trash" aria-hidden="true"></i>
+                    <div class='controlText'>Reset</div>
+                </button>
+            </div>
+
         </div>
-        <div class='optionsPanel flexRow' id='optionsPanel2'>
-            <button id='btnShowAll' class='control  controlWide controlSecondary'><i class="fas fa-eye"
-                                                                                                 aria-hidden="true"></i>
-                <div class='controlText'>Show all</div>
-            </button>
-            <button id='btnHideAll' class='control  controlWide controlSecondary' disabled><i
-                    class="fas fa-eye-slash" aria-hidden="true"></i>
-                <div class='controlText'>Hide all</div>
-            </button>
-        </div>
-        <div class="optionsPanel flexRow" id="optionsPanel3">
-            <label for="optPadBinary" class="optionCheckboxLabel" title="May make it difficult to manually enter binary values"><input type='checkbox' id="optPadBinary"
-                                                                         class="optionCheckboxInput"><span
-                    class="optionCheckboxLabelText">Pad binary to # bits</span></label>
-            <button id='btnReset' class='control' disabled><i class="fas fa-trash" aria-hidden="true" ></i>
-                <div class='controlText'>Reset</div>
-            </button>
-        </div>
+
+    </div>
+    <div id="footer">
         <div id='creditsPanel' class='flexCol flexColCenter'>
             <div id='credits'>© <span id="copyrightYear">2025</span> <a href="https://sawczak.com"
                                                                         title="Visit Luke Sawczak's website">Luke
@@ -176,9 +188,9 @@
 <!-- partial -->
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
 <script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
-<script src='https://t.sawczak.com/common/includes/misc/app-tools.js'></script>
-<script src='https://t.sawczak.com/common/includes/misc/jquery-ui-options.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js'></script>
+<script src='https://g.sawczak.com/web-tools/js/toolbox.js'></script>
+<script src='https://g.sawczak.com/web-tools/js/jquery-ui-options.js'></script>
 <script src="./script.js"></script>
 
 </body>

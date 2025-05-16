@@ -49,7 +49,7 @@ const clearBits = () => {
 }
 
 const setRandomBits = () => {
-    let dec = Tools.random(2 ** app.nBits);
+    let dec = Random.random(2 ** app.nBits);
     app.bitStates = decimalToBits(dec);
     updateBits();
 }
@@ -206,7 +206,7 @@ const formatBinary = () => {
     let chars = app.bitStates.slice().reverse().join("");
 
     if (! app.optPadBinary.value()) {
-        chars = Tools.trimChars(chars, '0', true, false);
+        chars = JSTools.trimChars(chars, '0', true, false);
 
         // at least 1 zero
         if (chars.length === 0) {
